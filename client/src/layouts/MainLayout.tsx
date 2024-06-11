@@ -1,9 +1,15 @@
 import { Outlet } from 'react-router-dom';
+import { Sidebar } from '../components/Sidebar';
+import { Footer } from '../components/Footer';
 
 export const MainLayout = () => {
   return (
-    <div className="flex items-center justify-center w-[100vw] h-[100vh]">
-      <Outlet />
+    <div className="">
+      <Sidebar />
+      <div className="pt-[64px]">
+        <Outlet />
+      </div>
+      <Footer />
     </div>
   );
 };

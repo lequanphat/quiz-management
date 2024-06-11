@@ -27,8 +27,10 @@ export default function Router() {
       element: <PrivateRoute component={MainLayout} />,
       children: [
         { path: '/', element: <Dashboard /> },
-        { path: '/waiting-room', element: <WaitingRoom /> },
-        { path: '/game', element: <Game /> },
+        { path: '/online-tests', element: <OnlineTests /> },
+        { path: '/online-courses', element: <OnlineCouses /> },
+        { path: '/my-courses', element: <TempPage /> },
+        { path: '/blogs', element: <TempPage /> },
       ],
     },
     { path: '/404', element: <Page404 /> },
@@ -40,7 +42,11 @@ export default function Router() {
 const Page404 = Loadable(lazy(() => import('../pages/errors/404')));
 const Dashboard = Loadable(lazy(() => import('../pages/dashboard/Dashboard')));
 const Login = Loadable(lazy(() => import('../pages/auth/Login')));
-const Game = Loadable(lazy(() => import('../pages/dashboard/Game')));
-const WaitingRoom = Loadable(
-  lazy(() => import('../pages/dashboard/WaitingRoom')),
+const OnlineCouses = Loadable(
+  lazy(() => import('../pages/dashboard/OnlineCouses')),
 );
+const OnlineTests = Loadable(
+  lazy(() => import('../pages/dashboard/OnlineTests')),
+);
+
+const TempPage = Loadable(lazy(() => import('../pages/dashboard/TempPage')));
