@@ -64,7 +64,7 @@ export const TestItem = ({
       </div>
       <div className="w-full mt-4">
         <Button
-          text="Làm bài"
+          text="Xem chi tiết"
           to={`${Math.floor(Math.random() * 10)}`}
           type={ButtonType.OUTLINE}
           fullWidth

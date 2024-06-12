@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import logo from '../assets/logo.webp';
 import { StateType } from '../types';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { resetUser } from '../store/slice/authSlice';
+import { IoMenuSharp } from 'react-icons/io5';
 export const Sidebar = () => {
   const { avatar } = useSelector((state: StateType) => state.auth);
   const [isShowDropdown, setIsShowDropdown] = useState<boolean>(false);
@@ -12,34 +12,40 @@ export const Sidebar = () => {
       className="w-full px-4 h-[64px] fixed z-[999] bg-white flex items-center justify-between"
       style={{ boxShadow: '0 4px 4px -4px rgba(0, 0, 0, .2)' }}
     >
-      <nav className="w-full flex items-center justify-between">
+      <nav className=" w-full flex items-center justify-between">
         <div>
           <h1 className="text-[28px] font-bold">QUIZ&TRICK</h1>
         </div>
-        <ul className="flex justify-end items-center">
-          <MenuItem title="Trang chủ" to="/" />
-          <MenuItem title="Đề thi online" to="online-tests" />
-          <MenuItem title="Khóa học online" to="online-courses" />
-          <MenuItem title="Bài viết" to="blogs" />
-          <li
-            className="relative p-2 mx-1 text-[#67a2e2] hover:text-[#35509a] cursor-pointer font-semibold"
-            onClick={() => {
-              setIsShowDropdown(!isShowDropdown);
-            }}
-          >
-            <div
-              className="w-[40px] h-[40px] rounded-full border-2 border-solid border-[#ccc]"
-              style={{
-                backgroundColor: '#f0f0f0',
-                backgroundImage: `url(${avatar})`,
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
+        <div>
+          <ul className="lg:flex xl:relative lg:relative md:absolute sm:absolute absolute top-full right-0 justify-end items-center block bg-white">
+            <MenuItem title="Trang chủ" to="/" />
+            <MenuItem title="Đề thi online" to="online-tests" />
+            <MenuItem title="Khóa học online" to="online-courses" />
+            <MenuItem title="Bài viết" to="blogs" />
+            <MenuItem title="Lớp học của tôi" to="my-classes" />
+            <li
+              className="relative p-2 mx-1 text-[#67a2e2] hover:text-[#35509a] cursor-pointer font-semibold lg:block hidden"
+              onClick={() => {
+                setIsShowDropdown(!isShowDropdown);
               }}
-            ></div>
-            <Dropdow show={isShowDropdown} />
-          </li>
-        </ul>
+            >
+              <div
+                className="w-[40px] h-[40px] rounded-full border-2 border-solid border-[#ccc]"
+                style={{
+                  backgroundColor: '#f0f0f0',
+                  backgroundImage: `url(${avatar})`,
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              ></div>
+              <Dropdow show={isShowDropdown} />
+            </li>
+          </ul>
+          <div className="lg:hidden cursor-pointer">
+            <IoMenuSharp size={24} />
+          </div>
+        </div>
       </nav>
     </div>
   );
@@ -56,7 +62,7 @@ export const MenuItem = ({
   return (
     <li
       {...props}
-      className="p-2 mx-1 text-[#71869d] hover:text-[#35509a] cursor-pointer font-semibold"
+      className="lg:w-auto xl:w-auto md:w-full  p-2 mx-1 text-[#71869d] hover:text-[#35509a] cursor-pointer font-semibold"
     >
       <Link to={to}>{title}</Link>
     </li>

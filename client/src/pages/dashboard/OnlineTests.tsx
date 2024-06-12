@@ -29,7 +29,7 @@ const OnlineTests = () => {
           </div>
         </div>
 
-        <div className="py-6 grid grid-cols-5 gap-6">
+        <div className="py-6 grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-6">
           <TestItem
             title="Lập trình web và ứng dụng nâng cao"
             duration={60}
@@ -37,7 +37,7 @@ const OnlineTests = () => {
             joined={24}
             parts={7}
             questions={200}
-            tags={['TOEIC', 'IELTS', 'HSK 1']}
+            tags={['CNTT']}
           />
           <TestItem
             title="Lập trình Python"
@@ -46,7 +46,34 @@ const OnlineTests = () => {
             joined={24}
             parts={7}
             questions={200}
-            tags={['TOEIC', 'IELTS', 'HSK 1']}
+            tags={['CNTT', 'KTPM']}
+          />
+          <TestItem
+            title="Cấu trúc dữ liệu và giải thuật"
+            duration={60}
+            comments={1455}
+            joined={24}
+            parts={7}
+            questions={200}
+            tags={['CNTT']}
+          />
+          <TestItem
+            title="Cơ sở trí tuệ nhân tạo"
+            duration={60}
+            comments={1455}
+            joined={24}
+            parts={7}
+            questions={200}
+            tags={['CNTT']}
+          />
+          <TestItem
+            title="Hệ thống thông tin doanh nghiệp"
+            duration={60}
+            comments={1455}
+            joined={24}
+            parts={7}
+            questions={200}
+            tags={['CNTT']}
           />
         </div>
       </div>

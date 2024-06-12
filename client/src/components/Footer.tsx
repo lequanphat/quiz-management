@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
-    <div className="bg-white border-t-[1px] border-solid border-[#ccc]">
+    <div className="bg-slate-50 ">
       <div className="p-16">
-        <div className="grid grid-cols-4 gap-16">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-4 sm:grid-cols-2 gap-16">
           <div>
             <h1 className="text-[16px] font-semibold uppercase">
               VỀ CHÚNG TÔI
@@ -68,7 +68,7 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="p-4 bg-slate-100">
+      <div className="p-4 bg-slate-200">
         <p className="text-center">
           @ 2024 - Bản quyền của Công ty TNHH Công Nghệ Quiz
         </p>
