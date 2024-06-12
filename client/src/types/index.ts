@@ -8,3 +8,8 @@ export interface AuthType {
 export interface StateType {
   auth: AuthType;
 }
+
+export interface AnswerType {
+  id: string;
+  content: string;
+}

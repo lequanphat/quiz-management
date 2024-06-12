@@ -3,6 +3,7 @@ import {
   IoPersonOutline,
   IoTimerOutline,
 } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 export const TestItem = () => {
   return (
@@ -44,13 +45,13 @@ export const TestItem = () => {
         </div>
       </div>
       <div className="w-full mt-4">
-        <a
-          href="#"
+        <Link
+          to={`${Math.floor(Math.random() * 10)}`}
           className="block w-full px-4 py-1 rounded-md text-center border-[1px] border-solid border-[#35509a] text-[#35509a]
                  hover:bg-[#35509a] hover:text-white font-semibold"
         >
           Chi tiết
-        </a>
+        </Link>
       </div>
     </div>
   );

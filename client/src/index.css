@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.answer-radio {
+  display: none;
+}
+.answer-radio:checked + .anwer-instance {
+  background-color: #35509a;
+  color: white;
+}
