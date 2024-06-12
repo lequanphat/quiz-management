@@ -9,18 +9,20 @@ export const Sidebar = () => {
   const [isShowDropdown, setIsShowDropdown] = useState<boolean>(false);
   return (
     <div
-      className="w-full px-4 h-[64px] fixed bg-white flex items-center justify-between"
+      className="w-full px-4 h-[64px] fixed z-[999] bg-white flex items-center justify-between"
       style={{ boxShadow: '0 4px 4px -4px rgba(0, 0, 0, .2)' }}
     >
       <nav className="w-full flex items-center justify-between">
-        <img src={logo} alt="" className="w-auto h-[35px]" />
+        <div>
+          <h1 className="text-[28px] font-bold">QUIZ&TRICK</h1>
+        </div>
         <ul className="flex justify-end items-center">
           <MenuItem title="Trang chủ" to="/" />
           <MenuItem title="Đề thi online" to="online-tests" />
           <MenuItem title="Khóa học online" to="online-courses" />
           <MenuItem title="Bài viết" to="blogs" />
           <li
-            className="relative p-2 mx-1 text-[#71869d] hover:text-[#35509a] cursor-pointer font-semibold"
+            className="relative p-2 mx-1 text-[#67a2e2] hover:text-[#35509a] cursor-pointer font-semibold"
             onClick={() => {
               setIsShowDropdown(!isShowDropdown);
             }}
@@ -35,7 +37,7 @@ export const Sidebar = () => {
                 backgroundRepeat: 'no-repeat',
               }}
             ></div>
-            {isShowDropdown && <Dropdow />}
+            <Dropdow show={isShowDropdown} />
           </li>
         </ul>
       </nav>
@@ -61,7 +63,7 @@ export const MenuItem = ({
   );
 };
 
-export const Dropdow = () => {
+export const Dropdow = ({ show }: { show: boolean }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<any>();
   const navigate = useNavigate();
@@ -73,7 +75,8 @@ export const Dropdow = () => {
   };
   return (
     <div
-      className="absolute top-full right-0 w-max min-w-[240px] bg-white p-4 rounded-md text-black font-normal cursor-default"
+      className={`absolute top-full right-0 w-max min-w-[240px] bg-white p-4 rounded-md text-black font-normal cursor-default
+        ${show ? 'visible' : 'hidden'}`}
       style={{
         boxShadow:
           '0 3px 5px -1px rgba(0, 0, 0, .2), 0 5px 8px 0 rgba(0, 0, 0, .14), 0 1px 14px 0 rgba(0, 0, 0, .12)',

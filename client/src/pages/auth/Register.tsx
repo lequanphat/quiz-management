@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { userLogin } from '../../store/slice/authSlice';
 import { Button } from '../../components/Button';
 
-const Login = () => {
+const Register = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<any>();
   // handle
@@ -17,8 +17,19 @@ const Login = () => {
   // render
   return (
     <div className="p-4 rounded">
-      <h1 className="text-[18px] font-bold uppercase">Đăng nhập</h1>
+      <h1 className="text-[18px] font-bold uppercase">Đăng ký</h1>
+      <p className="italic text-[#aaa]">Bắt đầu dùng thử 30 ngày miễn phí</p>
       <div className="py-4">
+        <div className="py-2">
+          <label htmlFor="username" className="font-medium text-[#444]">
+            Họ tên
+          </label>
+          <input
+            type="text"
+            placeholder="Nguyễn Văn A"
+            className="block border-[1px] border-solid border-[#ccc] w-full px-3 py-2 rounded-md my-1 focus:outline-none focus:border-[#333]"
+          />
+        </div>
         <div className="py-2">
           <label htmlFor="username" className="font-medium text-[#444]">
             Email
@@ -40,7 +51,7 @@ const Login = () => {
           />
         </div>
         <div className="py-4">
-          <Button text="Đăng nhập" fullWidth styling="py-2" />
+          <Button text="Đăng ký" fullWidth styling="py-2" />
         </div>
         <div className="py-2 w-full">
           <GoogleLogin
@@ -50,9 +61,9 @@ const Login = () => {
         </div>
         <div className="pt-6">
           <p className="text-center text-[#444]">
-            Bạn chưa có tài khoản ?{' '}
-            <a href="/auth/register" className="text-[#35509a]">
-              Đăng kí
+            Bạn đã có tài khoản ?{' '}
+            <a href="/auth/login" className="text-[#35509a]">
+              Đăng nhập
             </a>
           </p>
         </div>
@@ -60,4 +71,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default Register;

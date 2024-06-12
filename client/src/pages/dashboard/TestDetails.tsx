@@ -4,6 +4,7 @@ import {
   IoTimerOutline,
 } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { Button } from '../../components/Button';
 
 const TestDetails = () => {
   return (
@@ -196,12 +197,7 @@ const TestDetails = () => {
               <label htmlFor="part1">Làm full test (120 câu)</label>
             </div>
             <div className="pt-4">
-              <Link
-                to="practice"
-                className="uppercase bg-[#35509a] text-white px-4 py-1 rounded-md"
-              >
-                Luyện tập
-              </Link>
+              <Button text="Luyện tập" to="practice" />
             </div>
           </div>
         </div>

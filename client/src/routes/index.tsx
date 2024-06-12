@@ -20,7 +20,10 @@ export default function Router() {
     {
       path: '/auth',
       element: <AuthRoute component={AuthLayout} />,
-      children: [{ path: 'login', element: <Login /> }],
+      children: [
+        { path: 'login', element: <Login /> },
+        { path: 'register', element: <Register /> },
+      ],
     },
     {
       path: '/',
@@ -44,6 +47,7 @@ export default function Router() {
 const Page404 = Loadable(lazy(() => import('../pages/errors/404')));
 const Dashboard = Loadable(lazy(() => import('../pages/dashboard/Dashboard')));
 const Login = Loadable(lazy(() => import('../pages/auth/Login')));
+const Register = Loadable(lazy(() => import('../pages/auth/Register')));
 const OnlineCouses = Loadable(
   lazy(() => import('../pages/dashboard/OnlineCouses')),
 );
