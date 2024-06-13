@@ -7,10 +7,10 @@ interface PrivateRouteProps {
   component: FC;
 }
 const PrivateRoute: FC<PrivateRouteProps> = ({ component: Component }) => {
-  const { isAuthenticated, isLoading } = useSelector(
+  const { isAuthenticated, isLoading, isLoaded } = useSelector(
     (state: StateType) => state.auth,
   );
-  if (!isAuthenticated && !isLoading) {
+  if (!isAuthenticated && !isLoading && isLoaded) {
     return <Navigate to="/auth/login" replace={true} />;
   }
   return <Component />;

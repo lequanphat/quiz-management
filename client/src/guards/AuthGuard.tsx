@@ -7,10 +7,10 @@ interface AuthRouteProps {
   component: FC;
 }
 const AuthRoute: FC<AuthRouteProps> = ({ component: Component }) => {
-  const { isAuthenticated, isLoading } = useSelector(
+  const { isAuthenticated, isLoading, isLoaded } = useSelector(
     (state: StateType) => state.auth,
   );
-  if (isAuthenticated && !isLoading) {
+  if (isAuthenticated && !isLoading && isLoaded) {
     return <Navigate to="/" replace={true} />;
   }
   return <Component />;

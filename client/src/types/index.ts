@@ -1,8 +1,10 @@
 export interface AuthType {
   displayName: string;
+  email: string;
   avatar: string;
   isAuthenticated: boolean;
   isLoading: boolean;
+  isLoaded: boolean;
 }
 
 export interface StateType {

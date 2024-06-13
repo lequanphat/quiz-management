@@ -4,9 +4,11 @@ import { AuthType } from '../../types';
 
 const initialState: AuthType = {
   displayName: '',
+  email: '',
   avatar: '',
   isAuthenticated: false,
   isLoading: false,
+  isLoaded: false,
 };
 
 export const userSlice = createSlice({
@@ -21,29 +23,37 @@ export const userSlice = createSlice({
     builder
       .addCase(userLogin.pending, (state) => {
         state.isLoading = true;
+        state.isLoaded = false;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
         state.displayName = action.payload.data.displayName;
+        state.email = action.payload.data.email;
         state.avatar = action.payload.data.avatar;
         state.isAuthenticated = true;
         state.isLoading = false;
         localStorage.setItem('token', action.payload.token);
+        state.isLoaded = true;
       })
       .addCase(userLogin.rejected, (state) => {
         state.isLoading = false;
+        state.isLoaded = true;
       })
       .addCase(getUser.pending, (state) => {
         state.isLoading = true;
+        state.isLoaded = false;
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.displayName = action.payload.data.displayName;
+        state.email = action.payload.data.email;
         state.avatar = action.payload.data.avatar;
         state.isAuthenticated = true;
         state.isLoading = false;
+        state.isLoaded = true;
         localStorage.setItem('token', action.payload.token);
       })
       .addCase(getUser.rejected, (state) => {
         state.isLoading = false;
+        state.isLoaded = true;
       });
   },
 });
