@@ -4,7 +4,7 @@ export const AuthLayout = () => {
   return (
     <div className=" flex w-[100vw] h-[100vh]">
       <div
-        className="relative w-[65%] h-[100vh] "
+        className="relative xl:w-[65%] lg:w-[60%] md:w-[50%] sm:w-[0] w-[0] h-[100vh] "
         style={{
           backgroundImage: `url(${background})`,
           backgroundSize: 'cover',
@@ -12,7 +12,7 @@ export const AuthLayout = () => {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <div className="absolute top-0 left-0 w-full h-full px-16 py-[20%] bg-black text-white opacity-30">
+        <div className="hidden md:block absolute top-0 left-0 w-full h-full px-16 py-[20%] bg-black text-white opacity-30">
           <h1 className="text-[42px] font-bold ">
             Quiz - Hệ thống thi trắc nghiệm online
           </h1>
@@ -23,7 +23,7 @@ export const AuthLayout = () => {
             tác và tạo điều kiện cho việc học tập liên tục mọi lúc, mọi nơi.
           </p>
         </div>
-        <div className="absolute top-0 left-0 w-full h-full px-16 py-[20%] text-white ">
+        <div className="hidden md:block absolute top-0 left-0 w-full h-full px-16 py-[20%] text-white ">
           <h1 className="text-[42px] font-bold ">
             Quiz - Hệ thống thi trắc nghiệm online
           </h1>
@@ -36,7 +36,7 @@ export const AuthLayout = () => {
         </div>
       </div>
 
-      <div className="w-[35%] p-12">
+      <div className="xl:w-[35%] lg:w-[40%] md:w-[50%] sm:w-full w-full p-12">
         <Outlet />
       </div>
     </div>

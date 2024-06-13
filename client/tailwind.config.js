@@ -6,6 +6,7 @@ export default {
       colors: {
         primary: '#35509a',
         secondary: '#35509a',
+        error: '#e43a45',
       },
     },
   },

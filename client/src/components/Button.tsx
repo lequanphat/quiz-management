@@ -8,6 +8,7 @@ export const Button = ({
   fullWidth,
   uppercase,
   styling,
+  handle,
   ...props
 }: {
   text: string;
@@ -16,6 +17,7 @@ export const Button = ({
   styling?: string;
   fullWidth?: boolean;
   uppercase?: boolean;
+  handle?: () => void;
 }) => {
   let styled = '';
   switch (type) {
@@ -58,6 +60,7 @@ export const Button = ({
   return (
     <button
       {...props}
+      onClick={handle}
       className={`px-4 py-1 border-[1px] rounded-md
            text-center cursor-pointer ${styled} ${styling}`}
     >
