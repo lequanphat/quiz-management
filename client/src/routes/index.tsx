@@ -5,6 +5,7 @@ import { MainLayout } from '../layouts/MainLayout';
 import AuthRoute from '../guards/AuthGuard';
 import PrivateRoute from '../guards/PrivateGuard';
 import { AdminLayout } from '../layouts/AdminLayout';
+import AdminRoute from '../guards/AdminGuard';
 
 interface Props {}
 
@@ -29,7 +30,7 @@ export default function Router() {
     },
     {
       path: '/admin',
-      element: <PrivateRoute component={AdminLayout} />,
+      element: <AdminRoute component={AdminLayout} />,
       children: [{ path: '', element: <TempPage /> }],
     },
     {

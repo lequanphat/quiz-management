@@ -16,6 +16,7 @@ export class UserController {
       const user = await this.userService.getUserById(id);
       const accessToken = this.jwtService.signAccessToken({
         id,
+        role: user.role,
       });
       return res.status(HttpStatus.OK).json({ data: user, token: accessToken });
     } catch (error) {

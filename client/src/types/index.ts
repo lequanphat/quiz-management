@@ -1,7 +1,13 @@
+export enum Role {
+  ADMIN = 'admin',
+  USER = 'user',
+  TEACHER = 'teacher',
+}
 export interface AuthType {
   displayName: string;
   email: string;
   avatar: string;
+  role: Role;
   isAuthenticated: boolean;
   isLoading: boolean;
   isLoaded: boolean;

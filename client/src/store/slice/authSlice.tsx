@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api/AxiosInstance';
-import { AuthType } from '../../types';
+import { AuthType, Role } from '../../types';
 
 const initialState: AuthType = {
   displayName: '',
   email: '',
   avatar: '',
+  role: Role.USER,
   isAuthenticated: false,
   isLoading: false,
   isLoaded: false,
@@ -29,6 +30,7 @@ export const userSlice = createSlice({
         state.displayName = action.payload.data.displayName;
         state.email = action.payload.data.email;
         state.avatar = action.payload.data.avatar;
+        state.role = action.payload.data.role;
         state.isAuthenticated = true;
         state.isLoading = false;
         localStorage.setItem('token', action.payload.token);
@@ -58,6 +60,7 @@ export const userSlice = createSlice({
         state.displayName = action.payload.data.displayName;
         state.email = action.payload.data.email;
         state.avatar = action.payload.data.avatar;
+        state.role = action.payload.data.role;
         state.isAuthenticated = true;
         state.isLoading = false;
         state.isLoaded = true;
@@ -87,6 +90,7 @@ export const userSlice = createSlice({
         state.displayName = action.payload.data.displayName;
         state.email = action.payload.data.email;
         state.avatar = action.payload.data.avatar;
+        state.role = action.payload.data.role;
         state.isAuthenticated = true;
         state.isLoading = false;
         state.isLoaded = true;

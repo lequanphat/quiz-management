@@ -19,6 +19,7 @@ export class AuthMiddleware implements NestMiddleware {
       try {
         const data = this.jwtService.verifyAccessToken(token.split(' ')[1]);
         req.user = data;
+        console.log('User data:', data);
         next();
       } catch (error) {
         console.log('Token has expired');

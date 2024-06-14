@@ -1,10 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 import { ACCESS_SECRET, REFRESH_SECRET } from 'src/config';
+import { JWTPayload } from 'src/types';
 
-export interface JWTPayload {
-  id: number;
-}
 @Injectable()
 export class JwtService {
   // access token

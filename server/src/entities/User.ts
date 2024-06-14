@@ -1,4 +1,5 @@
 import { DEFAULT_AVATAR_URL } from 'src/config';
+import { Role } from 'src/types';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'users' })
@@ -23,6 +24,9 @@ export class User {
 
   @Column({ default: false })
   isVerified: boolean;
+
+  @Column({ default: Role.USER })
+  role: Role;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

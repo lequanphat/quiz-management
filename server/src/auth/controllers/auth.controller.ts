@@ -44,9 +44,11 @@ export class AuthController {
 
       const accessToken = this.jwtService.signAccessToken({
         id: loginData.id,
+        role: loginData.role,
       });
       const refreshToken = this.jwtService.signRefreshToken({
         id: loginData.id,
+        role: loginData.role,
       });
       this.cookieService.saveCookie(res, 'refreshToken', refreshToken);
       return res
@@ -64,9 +66,11 @@ export class AuthController {
       const data = await this.authService.googleLogin(credential);
       const accessToken = this.jwtService.signAccessToken({
         id: data.id,
+        role: data.role,
       });
       const refreshToken = this.jwtService.signRefreshToken({
         id: data.id,
+        role: data.role,
       });
       this.cookieService.saveCookie(res, 'refreshToken', refreshToken);
       return res.status(HttpStatus.OK).json({ data, token: accessToken });
