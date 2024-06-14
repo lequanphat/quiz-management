@@ -27,13 +27,10 @@ export const Header = () => {
               }}
             >
               <div
-                className="w-[40px] h-[40px] rounded-full border-2 border-solid border-[#ccc]"
+                className="w-[40px] h-[40px] rounded-full border-2 border-solid border-[#ccc] bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundColor: '#f0f0f0',
                   backgroundImage: `url(${avatar})`,
-                  backgroundPosition: 'center',
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
                 }}
               ></div>
               <Dropdow show={isShowDropdown} />

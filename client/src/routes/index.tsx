@@ -45,6 +45,7 @@ export default function Router() {
         { path: '/my-classes', element: <MyClasses /> },
         { path: '/online-tests/:id', element: <TestDetails /> },
         { path: '/online-tests/:id/practice', element: <PacticeTest /> },
+        { path: '/profile', element: <Profile /> },
       ],
     },
     { path: '/404', element: <Page404 /> },
@@ -79,3 +80,4 @@ const PacticeTest = Loadable(
 );
 const Blogs = Loadable(lazy(() => import('../pages/dashboard/Blogs')));
 const MyClasses = Loadable(lazy(() => import('../pages/dashboard/MyClasses')));
+const Profile = Loadable(lazy(() => import('../pages/dashboard/Profile')));

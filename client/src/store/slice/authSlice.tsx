@@ -166,5 +166,21 @@ export const getUser = createAsyncThunk(
   },
 );
 
+export const updateProfile = createAsyncThunk(
+  'auth/updateProfile',
+  async (data: FormData, { rejectWithValue }) => {
+    try {
+      const response = await api.post('/users/update-profile', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue({ error: error.response.data.message });
+    }
+  },
+);
+
 export default userSlice.reducer;
 export const { resetUser } = userSlice.actions;
