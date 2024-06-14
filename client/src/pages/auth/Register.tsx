@@ -1,6 +1,6 @@
 import { GoogleCredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
-import { userLogin } from '../../store/slice/authSlice';
+import { userGoogleLogin, userRegister } from '../../store/slice/authSlice';
 import { Button } from '../../components/Button';
 import { useFormik } from 'formik';
 import { registerSchema } from '../../schemas/auth.schema';
@@ -39,7 +39,9 @@ const Register = () => {
   // handle
   const handleGoogleLogin = (credentialResponse: GoogleCredentialResponse) => {
     console.log(credentialResponse);
-    dispatch(userLogin({ credential: credentialResponse.credential || '' }));
+    dispatch(
+      userGoogleLogin({ credential: credentialResponse.credential || '' }),
+    );
   };
   const handleGoogleLoginError = () => {
     console.log('Error');
@@ -67,12 +69,15 @@ const Register = () => {
       email: values.email,
       password: values.password,
     };
-    console.log(data);
+    const response = await dispatch(userRegister(data));
+    if (response.error) {
+      setRegisterError(response.payload.error);
+    }
   };
 
   // render
   return (
-    <div className="p-4 rounded">
+    <div className="w-full p-4 rounded">
       <h1 className="text-[18px] font-bold uppercase">Đăng ký</h1>
       <p className="italic text-[#aaa]">Bắt đầu dùng thử 30 ngày miễn phí</p>
       <div className="py-4">

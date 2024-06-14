@@ -21,6 +21,35 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(userGoogleLogin.pending, (state) => {
+        state.isLoading = true;
+        state.isLoaded = false;
+      })
+      .addCase(userGoogleLogin.fulfilled, (state, action) => {
+        state.displayName = action.payload.data.displayName;
+        state.email = action.payload.data.email;
+        state.avatar = action.payload.data.avatar;
+        state.isAuthenticated = true;
+        state.isLoading = false;
+        localStorage.setItem('token', action.payload.token);
+        state.isLoaded = true;
+      })
+      .addCase(userGoogleLogin.rejected, (state) => {
+        state.isLoading = false;
+        state.isLoaded = true;
+      })
+      .addCase(userRegister.pending, (state) => {
+        state.isLoading = true;
+        state.isLoaded = false;
+      })
+      .addCase(userRegister.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isLoaded = true;
+      })
+      .addCase(userRegister.rejected, (state) => {
+        state.isLoading = false;
+        state.isLoaded = true;
+      })
       .addCase(userLogin.pending, (state) => {
         state.isLoading = true;
         state.isLoaded = false;
@@ -31,8 +60,8 @@ export const userSlice = createSlice({
         state.avatar = action.payload.data.avatar;
         state.isAuthenticated = true;
         state.isLoading = false;
-        localStorage.setItem('token', action.payload.token);
         state.isLoaded = true;
+        localStorage.setItem('token', action.payload.token);
       })
       .addCase(userLogin.rejected, (state) => {
         state.isLoading = false;
@@ -58,9 +87,36 @@ export const userSlice = createSlice({
   },
 });
 
+export const userGoogleLogin = createAsyncThunk(
+  'auth/google-login',
+  async (data: { credential: string }, { rejectWithValue }) => {
+    try {
+      const response = await api.post('/auth/google-login', data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue({ error: error.response.data.message });
+    }
+  },
+);
+
+export const userRegister = createAsyncThunk(
+  'auth/register',
+  async (
+    data: { displayName: string; email: string; password: string },
+    { rejectWithValue },
+  ) => {
+    try {
+      const response = await api.post('/auth/register', data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue({ error: error.response.data.message });
+    }
+  },
+);
+
 export const userLogin = createAsyncThunk(
   'auth/login',
-  async (data: { credential: string }, { rejectWithValue }) => {
+  async (data: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const response = await api.post('/auth/login', data);
       return response.data;

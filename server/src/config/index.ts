@@ -14,3 +14,5 @@ export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 
 export const REFRESH_SECRET = process.env.REFRESH_SECRET;
 export const ACCESS_SECRET = process.env.ACCESS_SECRET;
+
+export const DEFAULT_AVATAR_URL = process.env.DEFAULT_AVATAR_URL;

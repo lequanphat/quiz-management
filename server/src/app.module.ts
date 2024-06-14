@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthMiddleware } from './common/middlewares/auth.middleware';
 import { CommonModule } from './common/common.module';
+import { UserVerification } from './entities/UserVerification';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -15,7 +16,7 @@ import { CommonModule } from './common/common.module';
       username: DB_CONFIG.USERNAME,
       password: DB_CONFIG.PASSWORD,
       database: DB_CONFIG.NAME,
-      entities: [User],
+      entities: [User, UserVerification],
       synchronize: true,
     }),
     UsersModule,

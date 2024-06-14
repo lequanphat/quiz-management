@@ -1,6 +1,6 @@
 import { GoogleCredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
-import { userLogin } from '../../store/slice/authSlice';
+import { userGoogleLogin, userLogin } from '../../store/slice/authSlice';
 import { Button } from '../../components/Button';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../schemas/auth.schema';
@@ -47,19 +47,24 @@ const Login = () => {
       email: values.email,
       password: values.password,
     };
-    console.log(data);
+    const response = await dispatch(userLogin(data));
+    if (response.error) {
+      setLoginError(response.payload.error);
+    }
   };
 
   const handleGoogleLogin = (credentialResponse: GoogleCredentialResponse) => {
     console.log(credentialResponse);
-    dispatch(userLogin({ credential: credentialResponse.credential || '' }));
+    dispatch(
+      userGoogleLogin({ credential: credentialResponse.credential || '' }),
+    );
   };
   const handleGoogleLoginError = () => {
     console.log('Error');
   };
   // render
   return (
-    <div className="p-4 rounded">
+    <div className="w-full p-4 rounded">
       <h1 className="text-[18px] font-bold uppercase">Đăng nhập</h1>
       <div className="py-4">
         <div className="py-2">

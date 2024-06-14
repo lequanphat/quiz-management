@@ -1,6 +1,6 @@
 import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { UserLoginDTO } from '../types';
+import { UserGoogleLoginDTO, UserLoginDTO, UserRegisterDTO } from '../types';
 import { AuthService } from '../services/auth.service';
 import { JwtService } from 'src/common/services/jwt.service';
 import { CookieService } from 'src/common/services/cookies.service';
@@ -12,11 +12,41 @@ export class AuthController {
     private readonly jwtService: JwtService,
     private readonly cookieService: CookieService,
   ) {}
+
+  @Post('register')
+  async register(@Body() data: UserRegisterDTO, @Res() res: Response) {
+    try {
+      const registerData = await this.authService.register(data);
+      return res.json(registerData);
+    } catch (error) {
+      throw error;
+    }
+  }
   @Post('login')
   async login(@Body() data: UserLoginDTO, @Res() res: Response) {
+    try {
+      const loginData = await this.authService.login(data);
+
+      const accessToken = this.jwtService.signAccessToken({
+        id: loginData.id,
+      });
+      const refreshToken = this.jwtService.signRefreshToken({
+        id: loginData.id,
+      });
+      this.cookieService.saveCookie(res, 'refreshToken', refreshToken);
+      return res
+        .status(HttpStatus.OK)
+        .json({ data: loginData, token: accessToken });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @Post('google-login')
+  async googleLogin(@Body() data: UserGoogleLoginDTO, @Res() res: Response) {
     const credential = data.credential;
     try {
-      const data = await this.authService.login(credential);
+      const data = await this.authService.googleLogin(credential);
       const accessToken = this.jwtService.signAccessToken({
         id: data.id,
       });

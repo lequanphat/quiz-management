@@ -36,7 +36,7 @@ export const AuthLayout = () => {
         </div>
       </div>
 
-      <div className="xl:w-[35%] lg:w-[40%] md:w-[50%] sm:w-full w-full p-12">
+      <div className="xl:w-[35%] lg:w-[40%] md:w-[50%] sm:w-full w-full p-12 flex items-center justify-center">
         <Outlet />
       </div>
     </div>
