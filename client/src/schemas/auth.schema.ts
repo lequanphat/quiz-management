@@ -31,6 +31,8 @@ const displayNameValidation = yup
     (value) => !/\s{2,}/.test(value ?? ''),
   );
 
+const otp = yup.string().matches(/^[0-9]{6}$/, 'Mã OTP phải có 6 chữ số.');
+
 export const loginSchema = yup.object({
   email: emailValidation,
   password: passwordValidation,
@@ -53,4 +55,8 @@ export const resetPasswordSchema = yup.object({
 export const editProfileSchema = yup.object({
   displayName: displayNameValidation,
   about: yup.string().max(100, 'Giới thiệu chỉ chứa tối đa 100 ký tự.'),
+});
+
+export const verifyEmailSchema = yup.object({
+  otp,
 });

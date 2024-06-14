@@ -5,6 +5,7 @@ import { Button } from '../../components/Button';
 import { useFormik } from 'formik';
 import { registerSchema } from '../../schemas/auth.schema';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface FormValues {
   displayName: string;
@@ -26,6 +27,7 @@ const initialErrors: FormValues = {
 const Register = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<any>();
+  const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [registerError, setRegisterError] = useState<any>('');
   const { values, errors, handleChange } = useFormik({
@@ -70,8 +72,14 @@ const Register = () => {
       password: values.password,
     };
     const response = await dispatch(userRegister(data));
+    console.log(response);
+    console.log(response);
     if (response.error) {
       setRegisterError(response.payload.error);
+    } else {
+      navigate('/auth/verify-account/' + response.payload.user_id, {
+        replace: true,
+      });
     }
   };
 

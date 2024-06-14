@@ -1,6 +1,11 @@
 import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { UserGoogleLoginDTO, UserLoginDTO, UserRegisterDTO } from '../types';
+import {
+  UserGoogleLoginDTO,
+  UserLoginDTO,
+  UserRegisterDTO,
+  VerifyAccountDTO,
+} from '../types';
 import { AuthService } from '../services/auth.service';
 import { JwtService } from 'src/common/services/jwt.service';
 import { CookieService } from 'src/common/services/cookies.service';
@@ -17,7 +22,17 @@ export class AuthController {
   async register(@Body() data: UserRegisterDTO, @Res() res: Response) {
     try {
       const registerData = await this.authService.register(data);
-      return res.json(registerData);
+      return res.json({ user_id: registerData.id });
+    } catch (error) {
+      throw error;
+    }
+  }
+  @Post('verify-account')
+  async verifyAccount(@Body() data: VerifyAccountDTO, @Res() res: Response) {
+    try {
+      console.log(data);
+      const userData = await this.authService.verifyAccount(data);
+      return res.json({ data: userData });
     } catch (error) {
       throw error;
     }

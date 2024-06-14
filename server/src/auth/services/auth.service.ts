@@ -4,7 +4,7 @@ import { User } from 'src/entities/User';
 import { Repository } from 'typeorm';
 import { GOOGLE_CLIENT_ID } from 'src/config';
 import { OAuth2Client } from 'google-auth-library';
-import { UserLoginDTO, UserRegisterDTO } from '../types';
+import { UserLoginDTO, UserRegisterDTO, VerifyAccountDTO } from '../types';
 import * as bcrypt from 'bcrypt';
 import { UserVerification } from 'src/entities/UserVerification';
 
@@ -32,10 +32,11 @@ export class AuthService {
       const salt = await bcrypt.genSalt();
       const hashedPassword = await bcrypt.hash(registerData.password, salt);
       if (user) {
-        newUser = await this.userRepository.update(user.id, {
+        await this.userRepository.update(user.id, {
           ...registerData,
           password: hashedPassword,
         });
+        newUser = user;
       } else {
         newUser = await this.userRepository.save({
           ...registerData,
@@ -45,6 +46,7 @@ export class AuthService {
       let userVerification = await this.userVerificationRepository.findOne({
         where: { user_id: newUser.id },
       });
+      console.log(userVerification);
       if (userVerification) {
         await this.userVerificationRepository.update(userVerification.id, {
           otp: Math.floor(100000 + Math.random() * 900000).toString(),
@@ -61,6 +63,32 @@ export class AuthService {
     }
   }
 
+  async verifyAccount(verifyAccountData: VerifyAccountDTO) {
+    const user = await this.userRepository.findOne({
+      where: { id: verifyAccountData.user_id },
+    });
+    if (user) {
+      const userVerification = await this.userVerificationRepository.findOne({
+        where: { user_id: user.id },
+      });
+      if (userVerification) {
+        if (userVerification.otp === verifyAccountData.otp) {
+          if (userVerification.expiredTime < new Date()) {
+            throw new HttpException('Mã OTP đã hết hạn.', 403);
+          }
+          await this.userRepository.update(user.id, { isVerified: true });
+          await this.userVerificationRepository.delete(userVerification.id);
+          return user;
+        } else {
+          throw new HttpException('Mã OTP không chính xác.', 403);
+        }
+      } else {
+        throw new HttpException('Mã OTP không tồn tại.', 403);
+      }
+    } else {
+      throw new HttpException('Tài khoản không tồn tại.', 403);
+    }
+  }
   async login(loginData: UserLoginDTO) {
     const user = await this.findUserByEmail(loginData.email);
     if (user) {

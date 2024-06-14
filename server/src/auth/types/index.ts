@@ -55,3 +55,11 @@ export class UserLoginDTO {
   @Expose()
   password: string;
 }
+export class VerifyAccountDTO {
+  @IsString()
+  @IsNotEmpty()
+  otp: string;
+  @IsString()
+  @IsNotEmpty()
+  user_id: number;
+}

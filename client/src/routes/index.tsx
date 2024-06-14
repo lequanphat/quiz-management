@@ -24,6 +24,7 @@ export default function Router() {
       children: [
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
+        { path: 'verify-account/:user_id', element: <VerifyAccount /> },
       ],
     },
     {
@@ -53,8 +54,14 @@ export default function Router() {
 // dinamic import
 const Page404 = Loadable(lazy(() => import('../pages/errors/404')));
 const Dashboard = Loadable(lazy(() => import('../pages/dashboard/Dashboard')));
+// auth
 const Login = Loadable(lazy(() => import('../pages/auth/Login')));
 const Register = Loadable(lazy(() => import('../pages/auth/Register')));
+const VerifyAccount = Loadable(
+  lazy(() => import('../pages/auth/VerifyAccount')),
+);
+
+// dashboard
 const OnlineCouses = Loadable(
   lazy(() => import('../pages/dashboard/OnlineCouses')),
 );

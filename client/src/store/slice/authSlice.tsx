@@ -67,6 +67,18 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.isLoaded = true;
       })
+      .addCase(userVerifyAccount.pending, (state) => {
+        state.isLoading = true;
+        state.isLoaded = false;
+      })
+      .addCase(userVerifyAccount.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isLoaded = true;
+      })
+      .addCase(userVerifyAccount.rejected, (state) => {
+        state.isLoading = false;
+        state.isLoaded = true;
+      })
       .addCase(getUser.pending, (state) => {
         state.isLoading = true;
         state.isLoaded = false;
@@ -107,6 +119,18 @@ export const userRegister = createAsyncThunk(
   ) => {
     try {
       const response = await api.post('/auth/register', data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue({ error: error.response.data.message });
+    }
+  },
+);
+
+export const userVerifyAccount = createAsyncThunk(
+  'auth/verify-account',
+  async (data: { otp: string; user_id: string }, { rejectWithValue }) => {
+    try {
+      const response = await api.post('/auth/verify-account', data);
       return response.data;
     } catch (error) {
       return rejectWithValue({ error: error.response.data.message });
