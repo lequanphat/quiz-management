@@ -12,9 +12,13 @@ export interface AuthType {
   isLoading: boolean;
   isLoaded: boolean;
 }
+export interface UserType {
+  isLoading: boolean;
+}
 
 export interface StateType {
   auth: AuthType;
+  user: UserType;
 }
 
 export interface AnswerType {

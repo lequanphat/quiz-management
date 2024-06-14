@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ButtonType } from '../types';
+import { ring2 } from 'ldrs';
+
+ring2.register();
 
 export const Button = ({
   text,
@@ -8,6 +11,7 @@ export const Button = ({
   fullWidth,
   uppercase,
   styling,
+  isLoading,
   handle,
   ...props
 }: {
@@ -17,6 +21,7 @@ export const Button = ({
   styling?: string;
   fullWidth?: boolean;
   uppercase?: boolean;
+  isLoading?: boolean;
   handle?: () => void;
 }) => {
   let styled = '';
@@ -61,10 +66,22 @@ export const Button = ({
     <button
       {...props}
       onClick={handle}
-      className={`px-4 py-1 border-[1px] rounded-md
+      className={`px-4 py-2 border-[1px] rounded-md
            text-center cursor-pointer ${styled} ${styling}`}
     >
-      {text}
+      <div className="flex items-center gap-2">
+        {isLoading && (
+          <l-ring-2
+            size="26"
+            stroke="3"
+            stroke-length="0.25"
+            bg-opacity="0.1"
+            speed="0.8"
+            color="white"
+          ></l-ring-2>
+        )}
+        <p>{text}</p>
+      </div>
     </button>
   );
 };

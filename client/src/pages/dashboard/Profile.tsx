@@ -2,12 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ButtonType, StateType } from '../../types';
 import { ChangeEvent, useState } from 'react';
 import { Button } from '../../components/Button';
-import { updateProfile } from '../../store/slice/authSlice';
+import { updateProfile } from '../../store/slice/userSlice';
 
 const Profile = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<any>();
   const { avatar } = useSelector((state: StateType) => state.auth);
+  const { isLoading } = useSelector((state: StateType) => state.user);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [preview, setPreview] = useState<any>('');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -57,6 +58,7 @@ const Profile = () => {
               text="Cập nhật ảnh đại diện"
               type={ButtonType.PRIMARY}
               handle={handleSubmit}
+              isLoading={isLoading}
             />
           </div>
         </div>
