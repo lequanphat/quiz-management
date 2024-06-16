@@ -5,6 +5,7 @@ import { Button } from '../../components/buttons/Button';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../schemas/auth.schema';
 import { useState } from 'react';
+import { Input } from '../../components/inputs/Input';
 
 const initialValues = {
   email: '',
@@ -67,33 +68,24 @@ const Login = () => {
     <div className="w-full p-4 rounded">
       <h1 className="text-[18px] font-bold uppercase">Đăng nhập</h1>
       <div className="py-4">
-        <div className="py-2">
-          <label htmlFor="username" className="font-medium text-[#444]">
-            Email
-          </label>
-          <input
-            value={values.email}
-            onChange={handleChange}
-            name="email"
-            type="text"
-            placeholder="nguyenvana@gmail.com"
-            className="block border-[1px] border-solid border-[#ccc] w-full px-3 py-2 rounded-md my-1 focus:outline-none focus:border-[#333]"
-          />
-        </div>
-        <div className="py-2">
-          <label htmlFor="username" className="font-medium text-[#444]">
-            Mật khẩu
-          </label>
-          <input
-            value={values.password}
-            onChange={handleChange}
-            name="password"
-            type="password"
-            placeholder="******"
-            className="block border-[1px] border-solid border-[#ccc] w-full px-3 py-2 rounded-md my-1 focus:outline-none focus:border-[#333]"
-          />
-        </div>
-
+        <Input
+          id="username"
+          label="Email"
+          name="email"
+          type="text"
+          value={values.email}
+          placeholder="nguyenvana@gmail.com"
+          onChange={handleChange}
+        />
+        <Input
+          id="password"
+          label="Mật khẩu"
+          name="password"
+          type="password"
+          value={values.password}
+          placeholder="******"
+          onChange={handleChange}
+        />
         <div>
           <p className="text-error">{loginError}</p>
         </div>

@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import { registerSchema } from '../../schemas/auth.schema';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Input } from '../../components/inputs/Input';
 
 interface FormValues {
   displayName: string;
@@ -89,45 +90,34 @@ const Register = () => {
       <h1 className="text-[18px] font-bold uppercase">Đăng ký</h1>
       <p className="italic text-[#aaa]">Bắt đầu dùng thử 30 ngày miễn phí</p>
       <div className="py-4">
-        <div className="py-2">
-          <label htmlFor="username" className="font-medium text-[#444]">
-            Họ tên
-          </label>
-          <input
-            value={values.displayName}
-            onChange={handleChange}
-            name="displayName"
-            type="text"
-            placeholder="Nguyễn Văn A"
-            className="block border-[1px] border-solid border-[#ccc] w-full px-3 py-2 rounded-md my-1 focus:outline-none focus:border-[#333]"
-          />
-        </div>
-        <div className="py-2">
-          <label htmlFor="username" className="font-medium text-[#444]">
-            Email
-          </label>
-          <input
-            value={values.email}
-            onChange={handleChange}
-            name="email"
-            type="text"
-            placeholder="nguyenvana@gmail.com"
-            className="block border-[1px] border-solid border-[#ccc] w-full px-3 py-2 rounded-md my-1 focus:outline-none focus:border-[#333]"
-          />
-        </div>
-        <div className="py-2">
-          <label htmlFor="username" className="font-medium text-[#444]">
-            Mật khẩu
-          </label>
-          <input
-            value={values.password}
-            onChange={handleChange}
-            name="password"
-            type="password"
-            placeholder="******"
-            className="block border-[1px] border-solid border-[#ccc] w-full px-3 py-2 rounded-md my-1 focus:outline-none focus:border-[#333]"
-          />
-        </div>
+        <Input
+          id="name"
+          label="Họ tên"
+          name="displayName"
+          type="text"
+          value={values.displayName}
+          placeholder="Nguyễn Văn A"
+          onChange={handleChange}
+        />
+
+        <Input
+          id="username"
+          label="Email"
+          name="email"
+          type="text"
+          value={values.email}
+          placeholder="nguyenvana@gmail.com"
+          onChange={handleChange}
+        />
+        <Input
+          id="password"
+          label="Mật khẩu"
+          name="password"
+          type="password"
+          value={values.password}
+          placeholder="******"
+          onChange={handleChange}
+        />
         <div>
           <p className="text-error">{registerError}</p>
         </div>

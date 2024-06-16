@@ -5,6 +5,7 @@ import { verifyEmailSchema } from '../../schemas/auth.schema';
 import { useDispatch } from 'react-redux';
 import { userVerifyAccount } from '../../store/slice/authSlice';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Input } from '../../components/inputs/Input';
 const initialValues = {
   otp: '',
 };
@@ -49,19 +50,15 @@ const VerifyAccount = () => {
         XÁC NHẬN TÀI KHOẢN
       </h1>
       <div className="py-4">
-        <div className="py-2">
-          <label htmlFor="username" className="font-medium text-[#444]">
-            OTP
-          </label>
-          <input
-            value={values.otp}
-            onChange={handleChange}
-            name="otp"
-            type="text"
-            placeholder="6 kí tự số"
-            className="block border-[1px] border-solid border-[#ccc] w-full px-3 py-2 rounded-md my-1 focus:outline-none focus:border-[#333]"
-          />
-        </div>
+        <Input
+          id="otp"
+          label="OTP"
+          name="otp"
+          type="text"
+          value={values.otp}
+          placeholder="6 kí tự số"
+          onChange={handleChange}
+        />
         <div>
           <p className="text-error">{verifyError}</p>
         </div>
