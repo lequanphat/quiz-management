@@ -1,11 +1,11 @@
-import { GoogleCredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
-import { userGoogleLogin, userLogin } from '../../store/slice/authSlice';
+import { userLogin } from '../../store/slice/authSlice';
 import { Button } from '../../components/buttons/Button';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../schemas/auth.schema';
 import { useState } from 'react';
 import { Input } from '../../components/inputs/Input';
+import { GoogleLoginComponent } from '../../components/google/GoogleLoginComponent';
 
 const initialValues = {
   email: '',
@@ -53,16 +53,6 @@ const Login = () => {
       setLoginError(response.payload.error);
     }
   };
-
-  const handleGoogleLogin = (credentialResponse: GoogleCredentialResponse) => {
-    console.log(credentialResponse);
-    dispatch(
-      userGoogleLogin({ credential: credentialResponse.credential || '' }),
-    );
-  };
-  const handleGoogleLoginError = () => {
-    console.log('Error');
-  };
   // render
   return (
     <div className="w-full p-4 rounded">
@@ -97,12 +87,7 @@ const Login = () => {
             handle={handleLogin}
           />
         </div>
-        <div className="py-2 w-full">
-          <GoogleLogin
-            onSuccess={handleGoogleLogin}
-            onError={handleGoogleLoginError}
-          />
-        </div>
+        <GoogleLoginComponent />
         <div className="pt-6">
           <p className="text-center text-[#444]">
             Bạn chưa có tài khoản ?{' '}

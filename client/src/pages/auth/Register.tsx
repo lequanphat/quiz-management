@@ -1,12 +1,12 @@
-import { GoogleCredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
-import { userGoogleLogin, userRegister } from '../../store/slice/authSlice';
+import { userRegister } from '../../store/slice/authSlice';
 import { Button } from '../../components/buttons/Button';
 import { useFormik } from 'formik';
 import { registerSchema } from '../../schemas/auth.schema';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/inputs/Input';
+import { GoogleLoginComponent } from '../../components/google/GoogleLoginComponent';
 
 interface FormValues {
   displayName: string;
@@ -39,16 +39,6 @@ const Register = () => {
       console.log('Form submitted with values:', values);
     },
   });
-  // handle
-  const handleGoogleLogin = (credentialResponse: GoogleCredentialResponse) => {
-    console.log(credentialResponse);
-    dispatch(
-      userGoogleLogin({ credential: credentialResponse.credential || '' }),
-    );
-  };
-  const handleGoogleLoginError = () => {
-    console.log('Error');
-  };
 
   // handle
   const handleRegister = async () => {
@@ -99,7 +89,6 @@ const Register = () => {
           placeholder="Nguyễn Văn A"
           onChange={handleChange}
         />
-
         <Input
           id="username"
           label="Email"
@@ -129,12 +118,7 @@ const Register = () => {
             handle={handleRegister}
           />
         </div>
-        <div className="py-2 w-full">
-          <GoogleLogin
-            onSuccess={handleGoogleLogin}
-            onError={handleGoogleLoginError}
-          />
-        </div>
+        <GoogleLoginComponent />
         <div className="pt-6">
           <p className="text-center text-[#444]">
             Bạn đã có tài khoản ?{' '}
