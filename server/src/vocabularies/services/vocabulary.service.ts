@@ -11,10 +11,18 @@ export class VocabularyService {
     private vocabularyRepository: Repository<Vocabulary>,
   ) {}
 
-  async getVocabularies() {
+  async getVocabularies(page: number) {
+    const limit = 8;
     try {
-      const vocabularies = await this.vocabularyRepository.find();
-      return vocabularies;
+      const skip = (page - 1) * limit;
+      const total = await this.vocabularyRepository.count();
+      const vocabularies = await this.vocabularyRepository
+        .createQueryBuilder()
+        .skip(skip)
+        .take(limit)
+        .getMany();
+      const totalPages = Math.ceil(total / limit);
+      return { vocabularies, totalPages, currentPage: page };
     } catch (error) {
       throw new HttpException('Error', HttpStatus.BAD_REQUEST);
     }

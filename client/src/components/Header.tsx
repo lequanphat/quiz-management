@@ -23,6 +23,7 @@ export const Header = () => {
             <MenuItem title="Khóa học online" to="online-courses" />
             <MenuItem title="Bài viết" to="blogs" />
             <MenuItem title="Lớp học của tôi" to="my-classes" />
+            <MenuItem title="Từ vựng" to="vocabularies" />
             <li
               className="relative p-2 mx-1 text-[#67a2e2] hover:text-[#35509a] cursor-pointer font-semibold lg:block hidden"
               onClick={() => {

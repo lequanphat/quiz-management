@@ -48,6 +48,7 @@ export default function Router() {
         { path: '/my-classes', element: <MyClasses /> },
         { path: '/online-tests/:id', element: <TestDetails /> },
         { path: '/online-tests/:id/practice', element: <PacticeTest /> },
+        { path: '/vocabularies', element: <VocabulariesPage /> },
         { path: '/profile', element: <Profile /> },
       ],
     },
@@ -89,4 +90,8 @@ const Profile = Loadable(lazy(() => import('../pages/dashboard/Profile')));
 
 const Vocabularies = Loadable(
   lazy(() => import('../pages/admin/Vocabularies')),
+);
+
+const VocabulariesPage = Loadable(
+  lazy(() => import('../pages/dashboard/Vocabularies')),
 );

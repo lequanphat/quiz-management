@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
 import { VocabularyService } from '../services/vocabulary.service';
 import { CreateVocabularyDTO } from '../types';
 import { Response } from 'express';
@@ -8,9 +8,9 @@ export class VocabularyController {
   constructor(private readonly vocabularyService: VocabularyService) {}
 
   @Get()
-  async getVocabularies(@Res() res: Response) {
+  async getVocabularies(@Res() res: Response, @Query('page') page: number) {
     try {
-      const vocabularies = await this.vocabularyService.getVocabularies();
+      const vocabularies = await this.vocabularyService.getVocabularies(page);
       return res.json({ data: vocabularies });
     } catch (error) {
       throw error;

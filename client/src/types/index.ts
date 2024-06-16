@@ -23,6 +23,8 @@ export interface Vocabulary {
 export interface VocabularyType {
   isLoading: boolean;
   vocabulariesList: Vocabulary[];
+  currentPage: number;
+  totalPages: number;
 }
 
 export interface StateType {
