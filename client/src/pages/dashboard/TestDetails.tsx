@@ -5,14 +5,12 @@ import {
 } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/buttons/Button';
+import { Card } from '../../components/cards/Card';
 
 const TestDetails = () => {
   return (
     <div className="p-12 ">
-      <div
-        className="p-4 border-[1px] border-solid border-[#e0e0e0] rounded-lg"
-        style={{ boxShadow: '0 4px 0 0 rgba(143,156,173,.2)' }}
-      >
+      <Card padding={4} styling="flex flex-col">
         <div className="py-2 flex items-center flex-wrap gap-2">
           <div className="px-4 py-1 bg-[#eee] rounded-full text-[14px]">
             #TOEIC
@@ -201,13 +199,10 @@ const TestDetails = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className="mt-6 p-4 border-[1px] border-solid border-[#e0e0e0] rounded-lg"
-        style={{ boxShadow: '0 4px 0 0 rgba(143,156,173,.2)' }}
-      >
+      </Card>
+      <Card padding={4} styling="mt-6">
         <h2 className="text-[16px] font-bold">Bình luận</h2>
-      </div>
+      </Card>
     </div>
   );
 };

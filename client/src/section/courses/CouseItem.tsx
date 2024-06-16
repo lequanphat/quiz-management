@@ -5,6 +5,7 @@ import {
 } from 'react-icons/io5';
 import { Button } from '../../components/buttons/Button';
 import { ButtonType } from '../../types';
+import { Card } from '../../components/cards/Card';
 
 export const CourseItem = ({
   image,
@@ -20,11 +21,11 @@ export const CourseItem = ({
   comments: number;
 }) => {
   return (
-    <div
-      className="h-[360px] flex flex-col justify-between border-[1px] border-solid border-[#e0e0e0] rounded-lg overflow-hidden"
-      style={{ boxShadow: '0 4px 0 0 rgba(143,156,173,.2)' }}
+    <Card
+      padding={0}
+      styling="h-[360px] flex flex-col justify-between overflow-hidden"
     >
-      <div>
+      <div className="w-full ">
         <div
           className="w-full h-[160px]"
           style={{
@@ -72,6 +73,6 @@ export const CourseItem = ({
           fullWidth
         />
       </div>
-    </div>
+    </Card>
   );
 };

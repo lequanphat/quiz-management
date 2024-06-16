@@ -5,6 +5,7 @@ import {
 } from 'react-icons/io5';
 import { Button } from '../../components/buttons/Button';
 import { ButtonType } from '../../types';
+import { Card } from '../../components/cards/Card';
 
 export const TestItem = ({
   title,
@@ -24,10 +25,7 @@ export const TestItem = ({
   tags: string[];
 }) => {
   return (
-    <div
-      className="h-[260px] flex flex-col justify-between p-4 border-[1px] border-solid border-[#e0e0e0] rounded-lg"
-      style={{ boxShadow: '0 4px 0 0 rgba(143,156,173,.2)' }}
-    >
+    <Card padding={4} styling="h-[260px] flex flex-col justify-between">
       <div>
         <h2 className="font-bold line-clamp-2">{title} </h2>
         <div className="py-1 flex items-center flex-wrap gap-x-2">
@@ -70,6 +68,6 @@ export const TestItem = ({
           fullWidth
         />
       </div>
-    </div>
+    </Card>
   );
 };

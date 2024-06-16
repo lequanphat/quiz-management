@@ -4,6 +4,8 @@ import { AddVocabulary } from '../../components/dialogs/AddVocabulary';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVocabularies } from '../../store/slice/vocabulariesSlice';
 import { StateType } from '../../types';
+import { Row, Table } from '../../components/tables/Table';
+import { Card } from '../../components/cards/Card';
 
 const Vocabularies = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,11 +31,7 @@ const Vocabularies = () => {
       {showAddVocabulary && (
         <AddVocabulary handleClose={handleHideAddVocabulary} />
       )}
-      <div
-        className="w-full bg-white p-4 border-[1px] border-solid border-[#e0e0e0] rounded-lg 
-      flex items-center justify-between "
-        style={{ boxShadow: '0 4px 0 0 rgba(143,156,173,.2)' }}
-      >
+      <Card padding={4}>
         <h1 className="text-[22px] font-semibold">Từ vựng</h1>
         <div>
           <Button
@@ -42,41 +40,19 @@ const Vocabularies = () => {
             handle={handleShowAddVocabulary}
           />
         </div>
-      </div>
-      <div
-        className="w-full mt-4 bg-white p-4 border-[1px] border-solid border-[#e0e0e0] rounded-lg 
-      flex items-center justify-between "
-        style={{ boxShadow: '0 4px 0 0 rgba(143,156,173,.2)' }}
-      >
-        <table className="w-full text-center">
-          <thead className="bg-blue-200">
-            <tr>
-              <th className="p-1 border-[1px] border-solid border-[#333]">#</th>
-              <th className="p-1 border-[1px] border-solid border-[#333]">
-                Từ vựng
-              </th>
-              <th className="p-1 border-[1px] border-solid border-[#333]">
-                Ý nghĩa
-              </th>
-            </tr>
-          </thead>
+      </Card>
+      <Card padding={4} styling="my-6">
+        <Table titles={['#', 'Từ vựng', 'Ý nghĩa']}>
           <tbody>
             {vocabulariesList?.map((vocabulary, index) => (
-              <tr key={index}>
-                <td className="p-1 border-[1px] border-solid border-[#333]">
-                  {vocabulary.id}
-                </td>
-                <td className="p-1 border-[1px] border-solid border-[#333]">
-                  {vocabulary.word}
-                </td>
-                <td className="p-1 border-[1px] border-solid border-[#333]">
-                  {vocabulary.mean}
-                </td>
-              </tr>
+              <Row
+                key={index}
+                fields={[vocabulary.id, vocabulary.word, vocabulary.mean]}
+              />
             ))}
           </tbody>
-        </table>
-      </div>
+        </Table>
+      </Card>
     </div>
   );
 };
