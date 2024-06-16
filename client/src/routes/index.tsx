@@ -31,7 +31,10 @@ export default function Router() {
     {
       path: '/admin',
       element: <AdminRoute component={AdminLayout} />,
-      children: [{ path: '', element: <TempPage /> }],
+      children: [
+        { path: 'vocabularies', element: <Vocabularies /> },
+        { path: '', element: <TempPage /> },
+      ],
     },
     {
       path: '/',
@@ -81,3 +84,9 @@ const PacticeTest = Loadable(
 const Blogs = Loadable(lazy(() => import('../pages/dashboard/Blogs')));
 const MyClasses = Loadable(lazy(() => import('../pages/dashboard/MyClasses')));
 const Profile = Loadable(lazy(() => import('../pages/dashboard/Profile')));
+
+// admin
+
+const Vocabularies = Loadable(
+  lazy(() => import('../pages/admin/Vocabularies')),
+);

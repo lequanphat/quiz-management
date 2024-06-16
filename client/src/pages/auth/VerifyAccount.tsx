@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/buttons/Button';
 import { useFormik } from 'formik';
 import { verifyEmailSchema } from '../../schemas/auth.schema';
 import { useDispatch } from 'react-redux';

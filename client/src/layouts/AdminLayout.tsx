@@ -10,7 +10,7 @@ export const AdminLayout = () => {
       </div>
       <div className="flex-1">
         <Header />
-        <div className="p-2">
+        <div className="p-4">
           <Outlet />
         </div>
       </div>

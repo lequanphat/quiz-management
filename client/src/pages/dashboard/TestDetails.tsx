@@ -4,7 +4,7 @@ import {
   IoTimerOutline,
 } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/buttons/Button';
 
 const TestDetails = () => {
   return (

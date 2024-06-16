@@ -7,6 +7,9 @@ import { AuthModule } from './auth/auth.module';
 import { AuthMiddleware } from './common/middlewares/auth.middleware';
 import { CommonModule } from './common/common.module';
 import { UserVerification } from './entities/UserVerification';
+import { VocabulariesModule } from './vocabularies/vocabularies.module';
+import { Vocabulary } from './entities/Vocabulary';
+import { VocabularyExample } from './entities/VocabularyExample';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -16,11 +19,12 @@ import { UserVerification } from './entities/UserVerification';
       username: DB_CONFIG.USERNAME,
       password: DB_CONFIG.PASSWORD,
       database: DB_CONFIG.NAME,
-      entities: [User, UserVerification],
+      entities: [User, UserVerification, Vocabulary, VocabularyExample],
       synchronize: true,
     }),
     UsersModule,
     AuthModule,
+    VocabulariesModule,
     CommonModule,
   ],
   controllers: [],

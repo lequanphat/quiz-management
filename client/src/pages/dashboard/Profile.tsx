@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonType, StateType } from '../../types';
 import { ChangeEvent, useState } from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/buttons/Button';
 import { updateProfile } from '../../store/slice/userSlice';
 
 const Profile = () => {

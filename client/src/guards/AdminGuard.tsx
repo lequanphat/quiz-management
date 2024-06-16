@@ -13,7 +13,9 @@ const AdminRoute: FC<AdminRouteProps> = ({ component: Component }) => {
   if (!isAuthenticated && !isLoading && isLoaded) {
     return <Navigate to="/auth/login" replace={true} />;
   }
-  if (role === Role.USER) return <Navigate to="/" replace={true} />;
+  if (role === Role.USER && !isLoading && isLoaded)
+    return <Navigate to="/" replace={true} />;
+
   return <Component />;
 };
 

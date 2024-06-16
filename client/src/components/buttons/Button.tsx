@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ButtonType } from '../types';
+import { ButtonType } from '../../types';
 import { ring2 } from 'ldrs';
 
 ring2.register();
@@ -43,7 +43,7 @@ export const Button = ({
       break;
   }
   if (fullWidth) {
-    styled += ' w-full';
+    styled += ' w-full flex justify-center';
   } else {
     styled += ' w-max';
   }

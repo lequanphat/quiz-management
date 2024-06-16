@@ -7,6 +7,7 @@ import {
   IoColorPalette,
   IoDocuments,
   IoImages,
+  IoLanguage,
   IoLayers,
   IoLockClosed,
   IoPeopleSharp,
@@ -53,6 +54,7 @@ export const Navbar = () => {
               { title: 'Câu hỏi', to: 'questions' },
             ]}
           />
+          <NavbarItem title="Từ vựng" icon={<IoLanguage />} to="vocabularies" />
           <NavbarItem title="Khóa học" icon={<IoBook />} to="123" />
           <NavbarItem title="Lớp học" icon={<IoLayers />} to="123" />
           <NavbarItem title="Bài viết" icon={<IoImages />} to="123" />

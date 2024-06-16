@@ -3,7 +3,7 @@ import {
   IoPersonOutline,
   IoTimerOutline,
 } from 'react-icons/io5';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/buttons/Button';
 import { ButtonType } from '../../types';
 
 export const CourseItem = ({

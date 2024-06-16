@@ -1,7 +1,7 @@
 import { GoogleCredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
 import { userGoogleLogin, userLogin } from '../../store/slice/authSlice';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/buttons/Button';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../schemas/auth.schema';
 import { useState } from 'react';

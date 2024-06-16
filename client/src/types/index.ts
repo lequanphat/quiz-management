@@ -15,10 +15,20 @@ export interface AuthType {
 export interface UserType {
   isLoading: boolean;
 }
+export interface Vocabulary {
+  id: string;
+  word: string;
+  mean: string;
+}
+export interface VocabularyType {
+  isLoading: boolean;
+  vocabulariesList: Vocabulary[];
+}
 
 export interface StateType {
   auth: AuthType;
   user: UserType;
+  vocabulary: VocabularyType;
 }
 
 export interface AnswerType {
